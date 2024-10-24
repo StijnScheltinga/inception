@@ -1,5 +1,14 @@
 services:
-  nginx:
-    build: ./requirements/nginx
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb-container
+    env_file: 
+      - .env
     ports:
-      - "443:443"
+      - "3306:3306"
+  # wordpress:
+  #   build: ./requirements/wordpress
+  #   container_name: wordpress-container
+  #   restart: always
+  #   env_file: ".env"
+  #   ports:

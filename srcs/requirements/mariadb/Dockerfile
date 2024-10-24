@@ -5,4 +5,10 @@ RUN apt-get update -y && \
 
 EXPOSE 3306
 
-CMD ["sh"]
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d
+
+COPY ./tools/startup.sh /
+
+RUN chmod 777 /startup.sh
+
+CMD ["sleep", "infinity"]

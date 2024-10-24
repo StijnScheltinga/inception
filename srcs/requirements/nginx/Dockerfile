@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
-RUN apt-get update -y && apt-get install -y nginx
+RUN apt-get update -y && apt-get install -y nginx openssl
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["startup.sh"]
