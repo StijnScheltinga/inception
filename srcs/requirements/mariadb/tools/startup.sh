@@ -5,9 +5,18 @@
 until /usr/bin/mysqladmin ping --silent; 
 do
     echo "waiting on MariaDB startup"
-    sleep 1
+    sleep 2
 done
 
-/usr/bin/mysqladmin shutdown
+echo "ALTER USER 'root'@'localhost' IDENTIFIED VIA mysql_native_password ;" >> setup.sql
+echo "SET PASSWORD = PASSWORD('$MARIADB_ROOT_PASSWORD');" >> setup.sql
+echo "CREATE DATABASE IF NOT EXISTS $MARIADB_DATABASE ;" >> setup.sql
+echo "CREATE USER IF NOT EXISTS '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIADB_PASSWORD' ;" >> setup.sql
+echo "GRANT ALL PRIVILEGES ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'%' ;" >> setup.sql
+echo "FLUSH PRIVILEGES ;" >> setup.sql
+
+mysql < setup.sql
+
+/usr/bin/mysqladmin -u root -p$MARIADB_ROOT_PASSWORD shutdown
 
 exec /usr/bin/mysqld_safe

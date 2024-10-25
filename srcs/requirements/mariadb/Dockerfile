@@ -11,4 +11,4 @@ COPY ./tools/startup.sh /
 
 RUN chmod 777 /startup.sh
 
-CMD ["sleep", "infinity"]
+CMD ["/startup.sh"]
