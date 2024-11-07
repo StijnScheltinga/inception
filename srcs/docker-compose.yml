@@ -1,13 +1,51 @@
+volumes:
+  wordpress-volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/stijn/sschelti/wordpress
+      o: bind
+  mariadb-volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/stijn/sschelti/mariadb
+      o: bind
+
+networks:
+  inception:
+
 services:
-  mariadb:
-    build: ./requirements/mariadb
-    container_name: mariadb-container
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx-container
     restart: always
-    env_file: 
+    env_file:
       - .env
+    ports:
+      - "80:80"
+    volumes:
+      - wordpress-volume:/var/www/html
+    networks:
+      - inception
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress-container
     restart: always
     env_file: 
       - .env
+    volumes:
+      - wordpress-volume:/var/www/html
+    networks:
+      - inception
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb-container
+    restart: always
+    env_file: 
+      - .env
+    volumes:
+      - mariadb-volume:/var/lib/mysql
+    networks:
+      - inception
+    
