@@ -14,6 +14,7 @@ volumes:
 
 networks:
   inception:
+    name: inception
 
 services:
   nginx:
@@ -23,11 +24,13 @@ services:
     env_file:
       - .env
     ports:
-      - "80:80"
+      - "443:443"
     volumes:
       - wordpress-volume:/var/www/html
     networks:
       - inception
+    depends_on:
+      - wordpress
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress-container
@@ -38,6 +41,8 @@ services:
       - wordpress-volume:/var/www/html
     networks:
       - inception
+    depends_on:
+      - wordpress
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb-container

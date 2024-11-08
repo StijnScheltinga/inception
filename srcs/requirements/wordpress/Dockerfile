@@ -17,6 +17,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 EXPOSE 9000
 
 COPY ./tools/startup.sh /
-RUN chmod +x /startup.sh
+RUN chmod +x /startup.sh									
 
 CMD ["bash", "/startup.sh"]

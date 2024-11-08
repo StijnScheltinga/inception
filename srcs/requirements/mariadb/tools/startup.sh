@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -f setup_finished ]; then
+if [ ! -f /var/lib/mysql/inception_setup_finished ]; then
 
 /usr/bin/mysqld_safe &
 
@@ -20,7 +20,7 @@ echo "FLUSH PRIVILEGES ;" >> setup.sql
 mysql < setup.sql
 
 /usr/bin/mysqladmin -u root -p$MARIADB_ROOT_PASSWORD shutdown
-touch setup_finished
+touch /var/lib/mysql/inception_setup_finished
 fi
 
 exec /usr/bin/mysqld_safe
