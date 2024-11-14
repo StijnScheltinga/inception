@@ -1,16 +1,16 @@
 all: up
 
 up:
-	@docker compose -f ./srcs/docker-compose.yml up -d
+	@sudo docker compose -f ./srcs/docker-compose.yml up -d
 
 down:
-	@docker compose -f ./srcs/docker-compose.yml down
+	@sudo docker compose -f ./srcs/docker-compose.yml down
 
 stop:
-	@docker compose -f ./srcs/docker-compose.yml stop
+	@sudo docker compose -f ./srcs/docker-compose.yml stop
 
 start:
-	@docker compose -f ./srcs/docker-compose.yml start
+	@sudo docker compose -f ./srcs/docker-compose.yml start
 
 fclean:
-	@docker system prune -a
+	@sudo docker system prune -a
