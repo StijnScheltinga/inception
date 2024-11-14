@@ -3,13 +3,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/sschelti/data/wordpress
+      device: /Users/stijn/sschelti/wordpress
       o: bind
   mariadb-volume:
     driver: local
     driver_opts:
       type: none
-      device: /home/sschelti/data/mariadb
+      device: /Users/stijn/sschelti/mariadb
       o: bind
 
 networks:
