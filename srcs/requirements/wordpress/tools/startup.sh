@@ -17,4 +17,5 @@ if [ ! -f wp-config.php ]; then
 	wp user create $WP_USER $WP_USER_MAIL --user_pass=$WP_USER_PW --allow-root
 fi
 
-php-fpm8.2 -F
+mkdir -p /run/php
+php-fpm7.4 -F
