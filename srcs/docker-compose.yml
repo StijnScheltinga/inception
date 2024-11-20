@@ -28,6 +28,8 @@ services:
       - wordpress-volume:/var/www/html
     networks:
       - inception
+    depends_on:
+      - wordpress
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress-container
@@ -38,6 +40,8 @@ services:
       - wordpress-volume:/var/www/html
     networks:
       - inception
+    depends_on:
+      - mariadb
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb-container
@@ -48,4 +52,10 @@ services:
       - mariadb-volume:/var/lib/mysql
     networks:
       - inception
+    healthcheck:
+      test: ["CMD", "mysqladmin", "-u", "root", "-p$MARIADB_ROOT_PASSWORD", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 10s
     
