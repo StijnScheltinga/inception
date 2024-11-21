@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 5
+
 cd /var/www/html
 
 #downloading wp core when it is not done yet

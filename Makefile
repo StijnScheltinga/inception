@@ -12,6 +12,9 @@ stop:
 start:
 	@sudo docker compose -f ./srcs/docker-compose.yml start
 
+build:
+	@sudo docker compose -f ./srcs/docker-compose.yml build --no-cache
+
 fclean:
 	@sudo docker stop $$(sudo docker ps -qa)
 	@sudo docker rm $$(sudo docker ps -qa)

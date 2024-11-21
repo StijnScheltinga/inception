@@ -7,7 +7,7 @@ if [ ! -f /var/lib/mysql/inception_setup_finished ]; then
 until /usr/bin/mysqladmin ping --silent; 
 do
     echo "waiting on MariaDB startup"
-    sleep 2
+    sleep 1
 done
 
 echo "ALTER USER 'root'@'localhost' IDENTIFIED VIA mysql_native_password ;" >> setup.sql

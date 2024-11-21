@@ -59,11 +59,5 @@ services:
       - mariadb-volume:/var/lib/mysql
     networks:
       - inception
-    healthcheck:
-      test: ["CMD", "mysqladmin", "-u", "root", "-p$MARIADB_ROOT_PASSWORD", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 10s
     
     
