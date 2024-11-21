@@ -17,6 +17,6 @@ fclean:
 	@sudo docker rm $$(sudo docker ps -qa)
 	@sudo docker rmi -f $$(sudo docker images -qa)
 	@sudo docker volume rm $$(sudo docker volume ls -q)
-	@sudo docker network rm $$(sudo docker network ls -q) 2>/dev/null
+	@-sudo docker network rm $$(sudo docker network ls -q) 2>/dev/null
 	@sudo rm -rf /home/sschelti/data/wordpress /home/sschelti/data/mariadb
-	@sudo mkdir /home/sschelti/data/wordpress /home/sschelti/data/mariadb
+	@mkdir /home/sschelti/data/wordpress /home/sschelti/data/mariadb
