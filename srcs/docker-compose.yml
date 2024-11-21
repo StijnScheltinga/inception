@@ -14,12 +14,15 @@ volumes:
 
 networks:
   inception:
+    name: inception
 
 services:
   nginx:
     build: ./requirements/nginx
-    container_name: nginx-container
+    container_name: nginx
+    image: nginx:42
     restart: always
+    pull_policy: build
     env_file:
       - .env
     ports:
@@ -32,8 +35,10 @@ services:
       - wordpress
   wordpress:
     build: ./requirements/wordpress
-    container_name: wordpress-container
+    container_name: wordpress
+    image: wordpress:42
     restart: always
+    pull_policy: build
     env_file: 
       - .env
     volumes:
@@ -44,9 +49,11 @@ services:
       - mariadb
   mariadb:
     build: ./requirements/mariadb
-    container_name: mariadb-container
+    container_name: mariadb
+    image: mariadb:42
     restart: always
-    env_file: 
+    pull_policy: build
+    env_file:
       - .env
     volumes:
       - mariadb-volume:/var/lib/mysql
